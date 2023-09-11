@@ -31,7 +31,8 @@ onSubmit() : void{
   console.log('Password:', password);
   this.userService.loginUser(email,password).subscribe(
     (res)=>{ console.log('Login successful', res);
-      localStorage.setItem('jwtToken',res.token)
+      localStorage.setItem('jwtToken',res.token);
+      localStorage.setItem('userId',res.profile.id);
     this.router.navigate(['/home']);
   },
   (error) => {

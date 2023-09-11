@@ -21,5 +21,4 @@ registerUser(name:string,email:string,password:string) : Observable<any>{
   const body= {name:name,email:email,password:password};
   return this.http.post<any>(url,body);
 }
-
 }
