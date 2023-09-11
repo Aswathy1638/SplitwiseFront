@@ -15,4 +15,16 @@ export class ExpenseService {
     
     return this.http.get(url);
   }
+
+  getOweAmount(userId:any)
+  {
+    const url = `${this.apiurl}/Expense/Balance/owe?userId=${userId}`;
+    return  this.http.get(url);
+  }
+  
+  getOwedAmount(userId:any)
+  {
+    const url = `${this.apiurl}/Expense/Balance/owed?userId=${userId}`;
+    return  this.http.get(url);
+  }
 }

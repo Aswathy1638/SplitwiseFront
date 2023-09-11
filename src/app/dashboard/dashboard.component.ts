@@ -10,6 +10,8 @@ import * as jwtDecode from 'jwt-decode';
 export class DashboardComponent {
   userId:any;
   balance:any;
+  oweAmount: any;
+  owedAmount: any;
   constructor(private expenseService:ExpenseService){}
 
   getBalance()
@@ -23,6 +25,33 @@ export class DashboardComponent {
       },
       error=>{console.log('Error');}
     );
+  }
+
+  getOweAmount()
+  {
+    const userId = localStorage.getItem('userId');
+   console.log("userid",userId);
+    this.expenseService.getOweAmount(userId).subscribe(
+      (response)=>{
+        console.log("Owe Amount", response);
+        this.oweAmount=response;
+      },
+      error=>{console.log('Error',error);}
+    );
+
+  }
+  getOwedAmount()
+  {
+    const userId = localStorage.getItem('userId');
+   console.log("userid",userId);
+    this.expenseService.getOwedAmount(userId).subscribe(
+      (response)=>{
+        console.log("Owed Amount", response);
+        this.owedAmount=response;
+      },
+      error=>{console.log('Error',error);}
+    );
+
   }
 
 }
