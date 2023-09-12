@@ -13,4 +13,8 @@ export class HomeComponent {
       this.router.navigate(['/dashboard']);
   }
 
+  navigateToExpense(){
+    this.router.navigate(['/expense']);
+  }
+
 }

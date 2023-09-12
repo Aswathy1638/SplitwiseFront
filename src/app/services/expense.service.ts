@@ -27,4 +27,17 @@ export class ExpenseService {
     const url = `${this.apiurl}/Expense/Balance/owed?userId=${userId}`;
     return  this.http.get(url);
   }
+  getExpenseDetails(userId:any)
+  {
+    const url = `${this.apiurl}/Expense/${userId}`;
+    return this.http.get(url);
+    }
+
+    addExpense(Description:any,GroupId:any,UserId:any,paiduser_id: any,amount:any,shareAmount:any)
+    {
+      const url =`${this.apiurl}/Expense`;
+      const body={ Description , GroupId, UserId,paiduser_id,amount,shareAmount} ;
+      debugger;
+      return   this.http.post<any>(url,body );
+        }
 }

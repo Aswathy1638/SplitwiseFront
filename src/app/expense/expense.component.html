@@ -1,0 +1,50 @@
+<app-home></app-home>
+<div class="expense">
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+          <p class="title" (click)="getExpenseDetails()">Expense</p>
+          <button class="btn btn-primary" type="button" (click)="toggleExpenseForm()" >AddExpense</button>
+        </form>
+        </nav>
+        <table class="table">
+            <thead class="head">
+                <tr>
+                    <th>Group Id</th>
+                    <th>Description</th>
+                    <th>Spent Amount</th>
+                    <th>Share Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let expense of expense">
+                    <td>{{expense.groupId}}</td>
+                    <td>{{ expense.description }}</td>
+                    <td>{{ expense.amount | currency }}</td>
+                    <td>{{ expense.shareAmount | currency }}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <form *ngIf="showExpenseForm" [formGroup]="expenseForm" (submit)="onSubmit()">
+            <div class="form-group">
+              <input type="text" class="form-control" id="form1" placeholder="Enter Expense Description" formControlName="Description">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="form2" placeholder="Enter the Group Id " formControlName="GroupId">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="form3" placeholder="Enter Id of user whom you want to pay" formControlName="paiduser_id">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="form4" placeholder="Enter the amount you are paying now " formControlName="amount">
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" id="form5" placeholder="Enter the share amount you expect from others " formControlName="shareAmount">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+          </form>
+      
