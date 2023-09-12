@@ -1,0 +1,29 @@
+<app-home></app-home>
+<div class="group">
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+          <p class="title" (click)="getGroups()">Group</p>
+         
+        </form>
+        </nav>
+        <table style="margin-left: 150px; "class="table">
+            <thead class="head">
+                <tr style="margin-left: 100px;">
+                    <th>Group Id</th>
+                    <th>Group Name</th>
+                    <th>Group Description</th>
+                    <th>Created On</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="margin-left: 100px;" *ngFor="let groups of group">
+                    <td>{{groups.id}}</td>
+                    <td>{{ groups.name }}</td>
+                    <td>{{ groups.description }}</td>
+                    <td>{{ groups.createdDate }}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+            {{group}}

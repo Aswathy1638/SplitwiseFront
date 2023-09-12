@@ -4,14 +4,16 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import {DashboardComponent}  from './dashboard/dashboard.component';
-import {ExpenseComponent} from './expense/expense.component'
+import {ExpenseComponent} from './expense/expense.component';
+import {GroupsComponent} from './groups/groups.component'
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent},
   {path:'dashboard',component:DashboardComponent},
-  {path:'expense',component:ExpenseComponent}
+  {path:'expense',component:ExpenseComponent},
+  {path:'groups',component:GroupsComponent}
 
 ];
 

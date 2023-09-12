@@ -9,7 +9,8 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ExpenseComponent } from './expense/expense.component'
+import { ExpenseComponent } from './expense/expense.component';
+import { GroupsComponent } from './groups/groups.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ExpenseComponent } from './expense/expense.component'
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,

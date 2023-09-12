@@ -16,5 +16,8 @@ export class HomeComponent {
   navigateToExpense(){
     this.router.navigate(['/expense']);
   }
+  navigateToGroups(){
+    this.router.navigate(['/groups']);
+  }
 
 }
