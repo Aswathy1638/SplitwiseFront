@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,6 +44,21 @@ getGroups(userId:any)
   
   const url = `${this.apiurl}/user/${userId}/groups`;
   return this.http.get(url);
+}
+addUser(groupname:any,email:any)
+{
+  const token =localStorage.getItem('jwtToken');
+  const httpOptions ={
+    headers:new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    )
+  };
+  const url = `${this.apiurl}/group/users?groupname=${groupname}&email=${email}`;
+  const body={};
+  return this.http.post<any>(url,body,httpOptions);
 }
 
 }

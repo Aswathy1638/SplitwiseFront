@@ -3,14 +3,10 @@
 
 <div class="group">
     <nav class="navbar navbar-light bg-light">
-        
-            
-        
-        
         <form class="form-inline">
             <p class="title" (click)="getGroups()">Group</p>
-            <i class='fas fa-users btn btn-primary' style="margin-top: -87px;margin-left: 970px;margin-right: 10px;"(click)="toggleExpenseForm()"></i>
-             <i class='fas fa-user-plus btn btn-primary' style="margin-top: -87px;"></i>
+            <i class='fas fa-users btn btn-primary' draggable="true" style="margin-top: -87px;margin-left: 970px;margin-right: 10px;"(click)="toggleExpenseForm()"></i>
+             <i class='fas fa-user-plus btn btn-primary' style="margin-top: -87px; " (click)="toggleUserForm()"></i>
         </form>
         </nav>
         <table style="margin-left: 150px; "class="table">
@@ -39,6 +35,18 @@
               </div>
             <div class="form-group">
               <input type="text" class="form-control" id="form1" placeholder="Enter Group Description" formControlName="Description">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>
+            </div>
+            
+          </form>
+          <form *ngIf="showUserForm" [formGroup]="userForm" (submit)="addUserToGroup()">
+            <div class="form-group">
+                <input type="text" class="form-control" id="form3" placeholder="Enter Group Name" formControlName="Name">
+              </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="form4" placeholder="Enter Email Address" formControlName="Email">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>

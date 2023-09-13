@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../services/users.service'
 import { FormBuilder ,FormGroup,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
@@ -12,6 +13,8 @@ export class GroupsComponent implements OnInit {
   description:any;
   group!: any;
   groupForm!: FormGroup;
+  userForm!: FormGroup;
+  showUserForm: boolean = false;
   showGroupForm: boolean=false;
   
   constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router){}
@@ -21,10 +24,18 @@ export class GroupsComponent implements OnInit {
       Description: ['', Validators.required],
       
     });
+    this.userForm  =   this.formBuilder.group ({
+      Name :['',[Validators.required]],
+      Email :['',[Validators.email,Validators.required]]
+    });
   }
   
   toggleExpenseForm() {
     this.showGroupForm = true;
+    
+   }
+   toggleUserForm() {
+    this.showUserForm = true;
     
    }
   getGroups(){
@@ -47,7 +58,7 @@ export class GroupsComponent implements OnInit {
     this.userService.createGroup(name,description)
     .subscribe((res)=>{
       console.log("added",res);
-      debugger;
+      
       this.router.navigate(['/home']);
     },
     (error) => {
@@ -58,5 +69,22 @@ export class GroupsComponent implements OnInit {
     );
   
    }
+
+   addUserToGroup(){
+    const groupname =this.userForm.get('Name')?.value;
+    const email = this.userForm.get('Email')?.value;
+    this.userService.addUser(groupname,email).subscribe
+    ((res)=>{
+      console.log("user added",res);
+      
+      this.router.navigate(['/home']);
+
+    },
+    (error)=>{
+      console.log(error,'error');
+    });
+
+   }
+  
 
 }
