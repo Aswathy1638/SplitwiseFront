@@ -21,8 +21,11 @@ registerUser(name:string,email:string,password:string) : Observable<any>{
   const body= {name:name,email:email,password:password};
   return this.http.post<any>(url,body);
 }
-createGroup(name:any,description:any)
-{ const token = localStorage.getItem('jwtToken');
+createGroup(name:any,description:any):Observable<any>
+{ 
+  const token = localStorage.getItem('jwtToken');
+  console.log(token,"is the jwt");
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -30,8 +33,8 @@ const httpOptions = {
   })
 };
   const url=`${this.apiurl}/group`;
-  const body={groupName: name , description: description  };
-  return   this.http.post(url,body ,httpOptions);
+  const body={Name: name , Description: description  };
+  return   this.http.post<any>(url,body ,httpOptions);
 }
 
 getGroups(userId:any)

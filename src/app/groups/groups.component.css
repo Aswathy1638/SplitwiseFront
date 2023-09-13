@@ -11,3 +11,16 @@
     font-weight: 500;
     font-size: 24px;
 }
+.add{
+    margin-top: -60px;
+    margin-left: 950px;
+    padding:50px;
+}
+.form-group
+{
+    background-color: rgb(240, 240, 240);
+    margin-left: 235px;
+    padding: 5px;
+    height: 52px;
+    margin-top: 16px;   
+}

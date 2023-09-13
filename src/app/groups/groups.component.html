@@ -1,9 +1,16 @@
 <app-home></app-home>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <div class="group">
     <nav class="navbar navbar-light bg-light">
+        
+            
+        
+        
         <form class="form-inline">
-          <p class="title" (click)="getGroups()">Group</p>
-         
+            <p class="title" (click)="getGroups()">Group</p>
+            <i class='fas fa-users btn btn-primary' style="margin-top: -87px;margin-left: 970px;margin-right: 10px;"(click)="toggleExpenseForm()"></i>
+             <i class='fas fa-user-plus btn btn-primary' style="margin-top: -87px;"></i>
         </form>
         </nav>
         <table style="margin-left: 150px; "class="table">
@@ -26,4 +33,15 @@
                 </tr>
             </tbody>
         </table>
-            {{group}}
+        <form *ngIf="showGroupForm" [formGroup]="groupForm" (submit)="onSubmit()">
+            <div class="form-group">
+                <input type="text" class="form-control" id="form2" placeholder="Enter Group Name" formControlName="Name">
+              </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="form1" placeholder="Enter Group Description" formControlName="Description">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>
+            </div>
+            
+          </form>
