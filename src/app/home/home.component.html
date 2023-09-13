@@ -25,9 +25,30 @@
                     <li class="list-group-item" (click)="navigateToDash()" >Dashboard</li>
                     <li class="list-group-item" (click)="navigateToExpense()"><a >All Expenses</a></li>
                     <li class="list-group-item" (click)="navigateToGroups()"><a >Groups</a></li>
-                    <li class="list-group-item" ><a >Friends</a></li>
+                    <li class="list-group-item" (click)="getFriends()"><a >Friends</a></li>
                 </ul>
     </ul>
     </div>
     
     </div>
+    <table *ngIf="showFriends" style="margin-left: 150px; "class="table">
+        <thead class="head">
+            <tr style="margin-left: 100px;">
+                <th>User Id</th>
+                <th>User Name</th>
+                <th>Email</th>
+               
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="margin-left: 120px;" *ngFor="let friends of friends" >
+                <td>{{friends.id}}</td>
+                <td>{{ friends.name }}</td>
+                <td>{{ friends.email}}</td>
+                
+             </tr>
+
+       
+        </tbody>
+    </table>

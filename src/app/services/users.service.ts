@@ -66,4 +66,19 @@ const url =`${this.apiurl}/groups/users/${groupId}`;
 return this.http.get(url );
 }
 
+getFriendsList(){
+  const token =localStorage.getItem('jwtToken');
+  const url =`${this.apiurl}/friends`;
+  const httpOptions ={
+    headers:new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    )
+  };
+  
+  return this.http.get(url,httpOptions);
+}
+
 }

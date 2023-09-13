@@ -8,6 +8,8 @@ import {UsersService} from '../services/users.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  showFriends: boolean=false;
+  friends:any;
   constructor(private router : Router,private userService:UsersService) {}
 
   navigateToDash(){
@@ -19,6 +21,16 @@ export class HomeComponent {
   }
   navigateToGroups(){
     this.router.navigate(['/groups']);
+  }
+
+  getFriends(){
+    this.userService.getFriendsList().subscribe(
+      (res)=>{
+        this.showFriends=true;
+        this.friends = res;
+        console.log("friends list", res);
+      }
+    );
   }
 
 }
