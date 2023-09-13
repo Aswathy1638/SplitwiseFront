@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
+import {UsersService} from '../services/users.service'
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import {Router} from '@angular/router'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private router : Router) {}
+  constructor(private router : Router,private userService:UsersService) {}
 
   navigateToDash(){
       this.router.navigate(['/dashboard']);

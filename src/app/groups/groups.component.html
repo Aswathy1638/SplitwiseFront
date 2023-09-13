@@ -20,13 +20,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="margin-left: 100px;" *ngFor="let groups of group">
+                <tr style="margin-left: 100px;" *ngFor="let groups of group" (click)="getMembers(groups.id)">
                     <td>{{groups.id}}</td>
                     <td>{{ groups.name }}</td>
                     <td>{{ groups.description }}</td>
                     <td>{{ groups.createdDate }}</td>
-                    
-                </tr>
+                 </tr>
+
+           
             </tbody>
         </table>
         <form *ngIf="showGroupForm" [formGroup]="groupForm" (submit)="onSubmit()">
@@ -58,3 +59,17 @@
             </div>
             
           </form>
+
+          <form *ngIf="showUsers" style="margin-left: 350px;" >
+            <div class="user-list-card">
+              <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header" style="font-size: larger;">Users</div>
+                <div class="card-body text-primary">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text"> <ul>
+                    <li *ngFor="let user of users">{{ user.name }}</li>
+                  </ul>
+                </div>
+            </div>
+            
+          

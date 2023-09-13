@@ -60,5 +60,10 @@ addUser(groupname:any,email:any)
   const body={};
   return this.http.post<any>(url,body,httpOptions);
 }
+getUsers(groupId:any)
+{
+const url =`${this.apiurl}/groups/users/${groupId}`;
+return this.http.get(url );
+}
 
 }

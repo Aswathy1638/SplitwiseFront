@@ -17,6 +17,9 @@ export class GroupsComponent implements OnInit {
   showUserForm: boolean = false;
   showGroupForm: boolean=false;
   userAdded: boolean =false;
+  users:any;
+  showUsers: boolean=false;
+  
   
   constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router){}
   ngOnInit(): void {
@@ -87,6 +90,22 @@ export class GroupsComponent implements OnInit {
     });
 
    }
+  
+   getMembers(groupid:any){
+
+    this.userService.getUsers(groupid).subscribe(
+      (res)=>  {
+        this.showUsers=true;
+        console.log(res);
+        this.users=res;
+  
+      },
+      (error)=>{
+        console.log(error,"error");
+      }
+    );
+   }
+  
   
 
 }
