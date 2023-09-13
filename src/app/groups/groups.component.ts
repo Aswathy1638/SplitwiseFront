@@ -16,6 +16,7 @@ export class GroupsComponent implements OnInit {
   userForm!: FormGroup;
   showUserForm: boolean = false;
   showGroupForm: boolean=false;
+  userAdded: boolean =false;
   
   constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router){}
   ngOnInit(): void {
@@ -58,7 +59,7 @@ export class GroupsComponent implements OnInit {
     this.userService.createGroup(name,description)
     .subscribe((res)=>{
       console.log("added",res);
-      
+      alert('Group created successfully!');
       this.router.navigate(['/home']);
     },
     (error) => {
@@ -76,7 +77,8 @@ export class GroupsComponent implements OnInit {
     this.userService.addUser(groupname,email).subscribe
     ((res)=>{
       console.log("user added",res);
-      
+      this.userAdded=true;
+      alert('User added successfully!');
       this.router.navigate(['/home']);
 
     },
