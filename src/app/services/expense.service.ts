@@ -37,7 +37,15 @@ export class ExpenseService {
     {
       const url =`${this.apiurl}/Expense`;
       const body={ Description , GroupId, UserId,paiduser_id,amount,shareAmount} ;
-      debugger;
+   
       return   this.http.post<any>(url,body );
+        }
+
+        addTransaction(groupId:any,payerUserId:any,paidUserId:any,expenseId:any,transactionAmount:any)
+        {
+          const url=`${this.apiurl}/Transaction`;
+          const body={groupId,payerUserId,paidUserId,expenseId,transactionAmount};
+          return this.http.post<any>(url,body);
+
         }
 }

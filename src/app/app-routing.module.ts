@@ -5,7 +5,8 @@ import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
 import {DashboardComponent}  from './dashboard/dashboard.component';
 import {ExpenseComponent} from './expense/expense.component';
-import {GroupsComponent} from './groups/groups.component'
+import {GroupsComponent} from './groups/groups.component';
+import {TransactionComponent} from './transaction/transaction.component'
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'expense',component:ExpenseComponent},
-  {path:'groups',component:GroupsComponent}
+  {path:'groups',component:GroupsComponent},
+  {path:'transaction',component:TransactionComponent}
 
 ];
 

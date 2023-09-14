@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { GroupsComponent } from './groups/groups.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     DashboardComponent,
     ExpenseComponent,
-    GroupsComponent
+    GroupsComponent,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

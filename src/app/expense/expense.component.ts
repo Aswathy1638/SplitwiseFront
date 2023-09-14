@@ -69,5 +69,8 @@ export class ExpenseComponent implements OnInit  {
   );
 
  }
+ navigateToTransaction(){
+  this.router.navigate(['/transaction']);
+ }
   
 }

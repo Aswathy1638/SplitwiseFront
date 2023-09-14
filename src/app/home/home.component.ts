@@ -10,6 +10,7 @@ import {UsersService} from '../services/users.service'
 export class HomeComponent {
   showFriends: boolean=false;
   friends:any;
+  i = localStorage.getItem('userInitial');
   constructor(private router : Router,private userService:UsersService) {}
 
   navigateToDash(){
@@ -32,5 +33,7 @@ export class HomeComponent {
       }
     );
   }
-
+logout(){
+  this.router.navigate(['/']);
+}
 }

@@ -68,6 +68,7 @@ export class GroupsComponent implements OnInit {
     (error) => {
       
       console.error('error', error);
+      alert(error.error);
     }
     
     );
