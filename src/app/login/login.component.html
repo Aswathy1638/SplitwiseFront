@@ -27,6 +27,10 @@
   <div class="form-outline mb-4">
     <input type="email" placeholder="Enter Email Address" id="email" formControlName="email" class="form-control" required><br>
     
+    <span style="color: red;"
+    *ngIf="loginForm.get('email')?.errors?.['required'] && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+    Email is required.
+  </span>
   </div>
   
               <!-- Password input -->
@@ -40,7 +44,6 @@
                 <div class="col d-flex justify-content-center">
                 
                 </div>
-  
                 <div class="col">
                   <!-- Simple link -->
                   <a routerLink="/register">New User? Register</a>

@@ -43,12 +43,21 @@
         </thead>
         <tbody>
             <tr style="margin-left: 120px;" *ngFor="let friends of friends" >
-                <td>{{friends.id}}</td>
-                <td>{{ friends.name }}</td>
-                <td>{{ friends.email}}</td>
+                <td>{{friends.friendId}}</td>
+                <td>{{ friends.friendName }}</td>
+                <!-- <td>{{ friends.email}}</td> -->  <button class="btn btn-primary" style="margin-left: 25px;" type="button" (click)="toggleForm()" >Add Friends</button>
                 
              </tr>
 
        
         </tbody>
     </table>
+
+    <form *ngIf="addFriendForm" [formGroup]="friendForm" (submit)="addaFriend()">
+        <div class="form-group">
+          <input type="email" class="form-control" id="form1" placeholder="Enter Email" formControlName="email">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>
+        </div>
+    </form>
