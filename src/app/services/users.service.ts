@@ -83,8 +83,8 @@ getFriendsList(){
 
 addFriend(email:any){
   const token =localStorage.getItem('jwtToken');
-  const url =`${this.apiurl}/friends`;
-  const body={email:email};
+  const url =`${this.apiurl}/friends?email=${email}`;
+  const body={};
   const httpOptions ={
     headers:new HttpHeaders(
       {

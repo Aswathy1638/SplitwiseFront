@@ -59,6 +59,7 @@ addaFriend()
     (res)=>{
       
       console.log("added", res);
+      alert('Friend added  successfully!');
     },
     (error)=>{
       console.log(error);
