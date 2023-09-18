@@ -30,19 +30,33 @@
             <div class="form-group">
               <input type="text" class="form-control" id="form1" placeholder="Enter Expense Description" formControlName="Description">
             </div>
+            <!-- <div class="form-group">
+              <input type="text" class="form-control" id="form2" placeholder="Enter the Group Name " formControlName="GroupId">
+            </div> -->
+           
             <div class="form-group">
-              <input type="text" class="form-control" id="form2" placeholder="Enter the Group Id " formControlName="GroupId">
+              <select class="form-control" id="form2" formControlName="GroupId" [(ngModel)]="selectedGroupId" (change)="getMembers(selectedGroupId)">
+                <option value="" disabled selected >Select Group</option>
+                <option *ngFor="let group of groupList" [value]="group.id">{{ group.name }}</option>
+              </select>
             </div>
+            
             <div class="form-group">
-                <input type="text" class="form-control" id="form3" placeholder="Enter Id of user whom you want to pay" formControlName="paiduser_id">
-              </div>
+              <select class="form-control" id="form3" formControlName="paiduser_id">
+                <option value="" disabled selected >Select User</option>
+                <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+              </select>
+            </div>
+            <!-- <div class="form-group">
+                <input type="text" class="form-control" id="form3" placeholder="I want to pay to..." formControlName="paiduser_id">
+              </div> -->
               <div class="form-group">
                 <input type="text" class="form-control" id="form4" placeholder="Enter the amount you are paying now " formControlName="amount">
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <input type="text" class="form-control" id="form5" placeholder="Enter the share amount you expect from others " formControlName="shareAmount">
-            </div>
+            </div> -->
             <div class="form-group">
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>
             </div>

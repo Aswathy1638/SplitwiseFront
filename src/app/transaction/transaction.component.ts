@@ -23,9 +23,9 @@ export class TransactionComponent implements OnInit {
   }
 
   addTransaction(){
-    let GroupId=this.transactionForm.get('GroupId')?.value;
-    const user_id=localStorage.getItem('userId'); 
-    const paidId =this.transactionForm.get('paidId')?.value;
+    const GroupId=this.transactionForm.get('GroupId')?.value;
+    const user_id= this.transactionForm.get('paidId')?.value;
+    const paidId =localStorage.getItem('userId');
     const expId = this.transactionForm.get('expId')?.value;
     const amount =this.transactionForm.get('amount')?.value;
 
