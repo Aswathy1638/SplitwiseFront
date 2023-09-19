@@ -33,15 +33,15 @@ export class ExpenseService {
     return this.http.get(url);
     }
 
-    addExpense(Description:any,GroupName:any,UserId:any,PaidUserName: any,amount:any)
+    addExpense(Description:any,GroupId:any,UserId:any,PaidUserId: any,amount:any)
     {
       const url =`${this.apiurl}/Expense`;
-      const body={ Description , GroupName, UserId,PaidUserName,amount} ;
+      const body={ Description , GroupId, UserId,PaidUserId,amount} ;
    
       return   this.http.post<any>(url,body );
         }
 
-      
+       
 
 
         addTransaction(GroupName:any,payerName:any,paidUserId:any,expenseId:any,transaction_Amount:any)
