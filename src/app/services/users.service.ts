@@ -45,7 +45,7 @@ getGroups(userId:any)
   const url = `${this.apiurl}/user/${userId}/groups`;
   return this.http.get(url);
 }
-addUser(groupname:any,email:any)
+addUser(groupname:any,email:string[])
 {
   const token =localStorage.getItem('jwtToken');
   const httpOptions ={
@@ -56,8 +56,11 @@ addUser(groupname:any,email:any)
       }
     )
   };
-  const url = `${this.apiurl}/group/users?groupname=${groupname}&email=${email}`;
-  const body={};
+  const url = `${this.apiurl}/group/users?groupname=${groupname}`;
+  console.log(email,"from");
+
+  const body= email;
+  console.log(body,"DFd");
   return this.http.post<any>(url,body,httpOptions);
 }
 getUsers(groupId:any)

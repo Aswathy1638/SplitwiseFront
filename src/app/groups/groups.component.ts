@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../services/users.service'
-import { FormBuilder ,FormGroup,Validators} from '@angular/forms';
+import { FormArray, FormBuilder ,FormGroup,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +33,8 @@ export class GroupsComponent implements OnInit {
     });
     this.userForm  =   this.formBuilder.group ({
       Name :['',[Validators.required]],
-      Email :['',[Validators.email,Validators.required]]
+      //Email :['',[Validators.email,Validators.required]],
+      selectedUsers: this.formBuilder.array([]) 
     });
     this.getUsers();
     this.getGroups();
@@ -82,9 +83,25 @@ export class GroupsComponent implements OnInit {
 
    addUserToGroup(){
     const groupname =this.userForm.get('Name')?.value;
-    const email = this.userForm.get('Email')?.value;
-    this.userService.addUser(groupname,email).subscribe
+    const selectedUsers = this.userForm.get('selectedUsers') as FormArray;
+
+
+    const selectedEmails: string[] = [];
+
+    // Iterate through the FormArray and check if each control is selected
+    for (let i = 0; i < selectedUsers.length; i++) {
+      if (selectedUsers.at(i).value) {
+        // If the control is selected, get the corresponding email from user list
+        selectedEmails.push(this.userList[i].email);
+      }
+
+      console.log(selectedEmails,"emails");
+    }
+
+    
+    this.userService.addUser(groupname,selectedEmails).subscribe
     ((res)=>{
+      
       console.log("user added",res);
       this.userAdded=true;
       alert('User added successfully!');
@@ -112,13 +129,47 @@ export class GroupsComponent implements OnInit {
     );
    }
   
-   getUsers(){
+  //  getUsers(){
+  //   this.userService.getAllUsers().subscribe(
+  //     (res)=>{
+  //       this.userList=res;
+  //       console.log(res,"userlist");
+  //     }
+  //   );
+  //  }
+  
+  getUsers() {
     this.userService.getAllUsers().subscribe(
-      (res)=>{
-        this.userList=res;
+      (res) => {
+        this.userList = res;
+        this.initializeSelectedUsersFormArray(); 
+        console.log(res, "userlist");
       }
     );
-   }
+  }
+  
+   updateSelectedUsers(email: string) {
+    const selectedUsers = this.userForm.get('selectedUsers') as FormArray;
+    if (selectedUsers) {
+      const emailControl = this.formBuilder.control(email);
+      if (selectedUsers.value.includes(email)) {
+        // Find the index of the email in the FormArray and remove it
+        const index = selectedUsers.value.indexOf(email);
+        selectedUsers.removeAt(index);
+      } else {
+        // Add the email to the FormArray
+        selectedUsers.push(emailControl);
+      }
+    }
+  }
+  
+  
+  initializeSelectedUsersFormArray() {
+    const selectedUsers = this.userForm.get('selectedUsers') as FormArray;
+    this.userList.forEach(() => {
+      selectedUsers.push(this.formBuilder.control(false)); 
+    });
+  }
   
 
 }
