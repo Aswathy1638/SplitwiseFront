@@ -8,28 +8,49 @@
                 <div class="card-body p-4">
                     <form [formGroup]="transactionForm">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="text" formControlName="GroupId" class="form-control " siez="17"
                                 placeholder="My Group is.." minlength="19" maxlength="19" />
                                 
-                            </div>
+                            </div> -->
+                            <div class="form-group">
+                                <select class="form-control"  formControlName="GroupId" [(ngModel)]="selectedGroupId" (change)="getMembers(selectedGroupId)">
+                                  <option value="" disabled selected >Select Group</option>
+                                  <option *ngFor="let group of groupList" [value]="group.id">{{ group.name }}</option>
+                                </select>
+                              </div>
                             <img src="https://img.icons8.com/color/48/000000/visa.png" alt="visa" width="64px" />
                         </div>
                         
-                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <!-- <div class="d-flex justify-content-between align-items-center mb-4">
                             <div class="form-group">
                                 <input type="text" formControlName="paidId" class="form-control " siez="17"
                                 placeholder="I am paying to.." />
                                
                             </div>
-                        </div>
-  
+                        </div> -->
                         <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="form-group">
+                            <select class="form-control" formControlName="paidId">
+                              <option value="" disabled selected >Select User</option>
+                              <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
                             <div class="form-group">
+                                <select class="form-control" formControlName="expId">
+                                  <option value="" disabled selected >Select transaction reference</option>
+                                  <option *ngFor="let expense of expense" [value]="expense.id">{{ expense.description }}</option>
+                                </select>
+                              </div>
+
+                            <!-- <div class="form-group">
                                 <input type="text" formControlName="expId" class="form-control " siez="17"
                                 placeholder="My transaction reference" />
                               
-                            </div>
+                            </div> -->
                         </div>
                         <div class="d-flex justify-content-between align-items-center pb-2">
                             <div class="form-group">

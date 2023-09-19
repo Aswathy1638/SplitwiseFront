@@ -54,9 +54,15 @@
         </table>
 
     <form *ngIf="addFriendForm" [formGroup]="friendForm" (submit)="addaFriend()">
-        <div class="form-group" style="margin-left: 250px;">
+        <!-- <div class="form-group" style="margin-left: 250px;">
           <input type="email" class="form-control" id="form1" placeholder="Enter Email" formControlName="email">
-        </div>
+        </div> -->
+        <div class="form-group" style="margin-left: 250px;">
+            <select class="form-control" id="form1" formControlName="email">
+              <option value="" disabled selected >Select User</option>
+              <option *ngFor="let user of userList" [value]="user.email">{{ user.name }}</option>
+            </select>
+          </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" style="margin-top: 10px;    margin-left: 398px">Submit</button>
         </div>

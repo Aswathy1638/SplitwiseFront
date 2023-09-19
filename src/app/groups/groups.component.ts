@@ -19,6 +19,9 @@ export class GroupsComponent implements OnInit {
   userAdded: boolean =false;
   users:any;
   showUsers: boolean=false;
+  userList:any=[];
+  groupList:any=[];
+  selectedGroupId:any;
   
   
   constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router){}
@@ -32,6 +35,8 @@ export class GroupsComponent implements OnInit {
       Name :['',[Validators.required]],
       Email :['',[Validators.email,Validators.required]]
     });
+    this.getUsers();
+    this.getGroups();
   }
   
   toggleExpenseForm() {
@@ -107,6 +112,13 @@ export class GroupsComponent implements OnInit {
     );
    }
   
+   getUsers(){
+    this.userService.getAllUsers().subscribe(
+      (res)=>{
+        this.userList=res;
+      }
+    );
+   }
   
 
 }

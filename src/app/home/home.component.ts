@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   friendForm!: FormGroup;
   friends:any;
   i = localStorage.getItem('userInitial');
+  userList:any=[];
 
   constructor(private router : Router,private userService:UsersService,private formBuider:FormBuilder) {}
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
       email: ['', Validators.required],
       
     });
+    this.getUsers();
   }
 
   navigateToDash(){
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit {
         this.showFriends=true;
         this.friends = res;
         console.log("friends list", res);
+        this.router.navigate(['/home']);
       }
     );
   }
@@ -60,12 +63,20 @@ addaFriend()
       
       console.log("added", res);
       alert('Friend added  successfully!');
+      this.router.navigate(['/home']);
     },
     (error)=>{
       console.log(error);
     }
   );
 }
+getUsers(){
+  this.userService.getAllUsers().subscribe(
+    (res)=>{
+      this.userList=res;
+    }
+  );
+ }
 }
 
 

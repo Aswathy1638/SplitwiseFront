@@ -44,10 +44,10 @@ export class ExpenseService {
        
 
 
-        addTransaction(GroupName:any,payerName:any,paidUserId:any,expenseId:any,transaction_Amount:any)
+        addTransaction(GroupId:any,payerName:any,paidUserId:any,expenseId:any,transaction_Amount:any)
         {
           const url=`${this.apiurl}/Transaction`;
-          const body={GroupName,payerName,paidUserId,expenseId,transaction_Amount};
+          const body={GroupId,payerName,paidUserId,expenseId,transaction_Amount};
           return this.http.post<any>(url,body);
 
         }

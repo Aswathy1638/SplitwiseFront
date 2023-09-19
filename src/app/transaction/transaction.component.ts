@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExpenseService } from '../services/expense.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-transaction',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
 })
 export class TransactionComponent implements OnInit {
    transactionForm!: FormGroup;
-  constructor(private formBuilder:FormBuilder,private expenseService:ExpenseService,private router:Router){}
+  showUsers: boolean =false;
+  selectedGroupId:any;
+  groupList:any=[];
+  users: any=[];
+  expense: any=[];
+  constructor(private formBuilder:FormBuilder,private expenseService:ExpenseService,private router:Router, private userService:UsersService){}
   ngOnInit(): void {
     this.transactionForm = this.formBuilder.group({
       GroupId: ['', Validators.required],
@@ -20,6 +26,9 @@ export class TransactionComponent implements OnInit {
       amount:['',Validators.required]
 
     });
+    this.getGroups();
+    this.getMembers(this.selectedGroupId);
+    this.getExpenseDetails();
   }
 
   addTransaction(){
@@ -41,4 +50,47 @@ export class TransactionComponent implements OnInit {
       
     );
   }
+
+  getMembers(groupid:any){
+
+    this.userService.getUsers(groupid).subscribe(
+      (res)=>  {
+        this.showUsers=true;
+        console.log(res);
+        this.users=res;
+  
+      },
+      (error)=>{
+        console.log(error,"error");
+      }
+    );
+   }
+   getGroups(){
+    const userId = localStorage.getItem('userId');
+    this.userService.getGroups(userId).subscribe(
+      (res)=>{
+        this.groupList=res;
+        console.log(res,"groups");
+      },
+      (error)=>{
+        console.log(error);
+      }
+    );
+  }
+
+  getExpenseDetails()
+  {
+    const userId = localStorage.getItem('userId');
+    console.log(userId,"is the current user");
+  
+    this.expenseService.getExpenseDetails(userId).subscribe(
+      (res:any) =>{
+        console.log("Expense Details",res);
+        this.expense = res;
+        
+      },
+      error=>{console.log(error)}
+    );
+  }
+
 }
