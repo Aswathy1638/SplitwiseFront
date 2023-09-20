@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -50,5 +50,22 @@ export class ExpenseService {
           const body={GroupId,payerName,paidUserId,expenseId,transaction_Amount};
           return this.http.post<any>(url,body);
 
+        }
+       
+
+        getBalanceDetails(userId:string)
+        {
+          const token =localStorage.getItem('jwtToken');
+          const httpOptions ={
+            headers:new HttpHeaders(
+              {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              }
+            )
+          };
+          const url=`${this.apiurl}/Expense/Balance/Details?userId=${userId}`;
+
+          return this.http.get(url,httpOptions);
         }
 }

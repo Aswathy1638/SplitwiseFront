@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from '../services/users.service'
 import { FormArray, FormBuilder ,FormGroup,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { ExpenseService } from '../services/expense.service';
 
 @Component({
   selector: 'app-groups',
@@ -22,9 +23,14 @@ export class GroupsComponent implements OnInit {
   userList:any=[];
   groupList:any=[];
   selectedGroupId:any;
+  value: any=[];
+  showBal: boolean=false;
+  //lasttt
+
+  selectedUserName!: string;
+
   
-  
-  constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router){}
+  constructor(private userService:UsersService,private formBuilder:FormBuilder,private router:Router,private ExpenseService:ExpenseService){}
   ngOnInit(): void {
     this.groupForm = this.formBuilder.group({
       Name: ['', Validators.required],
@@ -38,6 +44,9 @@ export class GroupsComponent implements OnInit {
     });
     this.getUsers();
     this.getGroups();
+  }
+  userPopoverContent(user: any): string {
+    return `<p>Owe: ${user.owe}</p><p>Owed: ${user.owed}</p>`;
   }
   
   toggleExpenseForm() {
@@ -88,10 +97,10 @@ export class GroupsComponent implements OnInit {
 
     const selectedEmails: string[] = [];
 
-    // Iterate through the FormArray and check if each control is selected
+   
     for (let i = 0; i < selectedUsers.length; i++) {
       if (selectedUsers.at(i).value) {
-        // If the control is selected, get the corresponding email from user list
+  
         selectedEmails.push(this.userList[i].email);
       }
 
@@ -128,16 +137,7 @@ export class GroupsComponent implements OnInit {
       }
     );
    }
-  
-  //  getUsers(){
-  //   this.userService.getAllUsers().subscribe(
-  //     (res)=>{
-  //       this.userList=res;
-  //       console.log(res,"userlist");
-  //     }
-  //   );
-  //  }
-  
+ 
   getUsers() {
     this.userService.getAllUsers().subscribe(
       (res) => {
@@ -171,5 +171,22 @@ export class GroupsComponent implements OnInit {
     });
   }
   
+
+  getBalDetails(userId:any){
+    this.ExpenseService.getBalanceDetails(userId).subscribe(
+      (res)=>{
+        this.showBal=true;
+        this.value=res;
+        console.log(res,"success");
+        const selectedUser = this.users.find((user: { id: any; }) => user.id === userId);
+      if (selectedUser) {
+        this.selectedUserName = selectedUser.name;
+      }
+      },
+      (error)=>{
+        console.log("Error", error);
+      }
+    );
+  }
 
 }
