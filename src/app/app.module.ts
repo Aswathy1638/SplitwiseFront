@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {ReactiveFormsModule} from '@angular/forms'
+import {ReactiveFormsModule,FormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -13,6 +13,7 @@ import { ExpenseComponent } from './expense/expense.component';
 import { GroupsComponent } from './groups/groups.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TransactionComponent } from './transaction/transaction.component';
+import { BillsComponent } from './bills/bills.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TransactionComponent } from './transaction/transaction.component';
     DashboardComponent,
     ExpenseComponent,
     GroupsComponent,
-    TransactionComponent
+    TransactionComponent,
+    BillsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { TransactionComponent } from './transaction/transaction.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule
     
   ],
   providers: [],
