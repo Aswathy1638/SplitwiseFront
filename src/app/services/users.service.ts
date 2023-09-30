@@ -12,10 +12,10 @@ export class UsersService {
   private apiurl= 'https://localhost:7134/api/Users';
   constructor(private http:HttpClient) { }
 
-    loginUser(email: string, password: string) :Observable<any>{
-        const url = `https://localhost:44354/api/account/login`;
-        const body = { userNameOrEmailAddress:email, password:password,"rememberMe":true};
-        return this.http.post<any>(url, body);
+  loginUser(email: string, password: string) :Observable<any>{
+    const url = `${this.apiurl}/login`;
+    const body = { email:email, password:password };
+    return this.http.post<any>(url, body);
 }
 
 registerUser(name:string,email:string,password:string) : Observable<any>{
