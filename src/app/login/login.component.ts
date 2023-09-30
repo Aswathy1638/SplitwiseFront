@@ -32,10 +32,10 @@ onSubmit() : void{
   console.log('Password:', password);
   this.userService.loginUser(email,password).subscribe(
     (res)=>{ console.log('Login successful', res);
-    this.userInitial=res.profile.name.charAt(0).toUpperCase();
+   // this.userInitial=res.profile.name.charAt(0).toUpperCase();
     localStorage.setItem('userInitial',this.userInitial);
       localStorage.setItem('jwtToken',res.token);
-      localStorage.setItem('userId',res.profile.id);
+   //   localStorage.setItem('userId',res.profile.id);
     this.router.navigate(['/home']);
   },
   (error) => {
